@@ -9,7 +9,7 @@ import tempfile
 # ── Page config ──────────────────────────────────────────────────────────────
 st.set_page_config(
     page_title="SeedVision",
-    page_icon="🌱",
+    page_icon="",
     layout="centered",
 )
 
@@ -65,18 +65,18 @@ BASE        = os.path.dirname(os.path.abspath(__file__))
 WEIGHTS     = os.path.join(BASE, "runs", "seedvision_v1", "weights", "best.pt")
 
 CLASS_EMOJI = {
-    "healthy":      "✅",
-    "healthy-50-40":"🟡",
-    "healthy-70-60":"🟢",
-    "crack":        "🔴",
-    "damage":       "🔴",
-    "hole":         "🔴",
-    "insectdamage": "🐛",
-    "molddamage":   "🍄",
-    "black_point":  "⚫",
-    "shriveledseed":"🟠",
-    "staindamage":  "🟤",
-    "objects":      "⚪",
+    "healthy":      "",
+    "healthy-50-40":"",
+    "healthy-70-60":"",
+    "crack":        "",
+    "damage":       "",
+    "hole":         "",
+    "insectdamage": "",
+    "molddamage":   "",
+    "black_point":  "",
+    "shriveledseed":"",
+    "staindamage":  "",
+    "objects":      "",
 }
 
 BAD_CLASSES = {"crack","damage","hole","insectdamage","molddamage",
@@ -86,24 +86,24 @@ BAD_CLASSES = {"crack","damage","hole","insectdamage","molddamage",
 @st.cache_resource(show_spinner=False)
 def load_model():
     if not os.path.exists(WEIGHTS):
-        st.error("❌ Model weights not found. Training may still be in progress.")
+        st.error(" Model weights not found. Training may still be in progress.")
         st.stop()
     return YOLO(WEIGHTS)
 
 # ── Header ────────────────────────────────────────────────────────────────────
-st.markdown('<p class="main-title">🌱 SeedVision</p>', unsafe_allow_html=True)
+st.markdown('<p class="main-title"> SeedVision</p>', unsafe_allow_html=True)
 st.markdown('<p class="subtitle">AI-powered seed quality & defect detection · YOLOv8</p>', unsafe_allow_html=True)
 
 # ── Sidebar ───────────────────────────────────────────────────────────────────
 with st.sidebar:
-    st.markdown("### ⚙️ Settings")
+    st.markdown("###  Settings")
     conf    = st.slider("Confidence threshold", 0.05, 0.95, 0.30, 0.05)
     iou     = st.slider("NMS IoU threshold",    0.10, 0.90, 0.45, 0.05)
     show_bb = st.checkbox("Show bounding boxes", value=True)
     st.markdown("---")
-    st.markdown("### 📋 Classes")
+    st.markdown("###  Classes")
     for name, emoji in CLASS_EMOJI.items():
-        color = "🔴" if name in BAD_CLASSES else "🟢"
+        color = "" if name in BAD_CLASSES else ""
         st.markdown(f"{emoji} `{name}` {color}")
 
 # ── Upload ────────────────────────────────────────────────────────────────────
@@ -116,14 +116,14 @@ uploaded = st.file_uploader(
 if uploaded is None:
     st.markdown("""
     <div class="status-box">
-    📂 Upload an image above to begin detection.<br>
+     Upload an image above to begin detection.<br>
     Supports JPG, PNG, BMP, WEBP.
     </div>
     """, unsafe_allow_html=True)
     st.stop()
 
 # ── Run inference ─────────────────────────────────────────────────────────────
-with st.spinner("🔍 Analysing seed..."):
+with st.spinner(" Analysing seed..."):
     model = load_model()
 
     img_pil  = Image.open(uploaded).convert("RGB")
@@ -159,11 +159,11 @@ st.markdown("---")
 boxes = result.boxes
 
 if len(boxes) == 0:
-    st.warning("⚠️ No seeds detected. Try lowering the confidence threshold.")
+    st.warning(" No seeds detected. Try lowering the confidence threshold.")
 else:
     n_defect  = sum(1 for b in boxes if model.names[int(b.cls)] in BAD_CLASSES)
     n_healthy = len(boxes) - n_defect
-    verdict   = "🟢 GOOD" if n_defect == 0 else f"🔴 {n_defect} DEFECT(S) FOUND"
+    verdict   = " GOOD" if n_defect == 0 else f" {n_defect} DEFECT(S) FOUND"
 
     m1, m2, m3 = st.columns(3)
     m1.metric("Total Detected", len(boxes))
@@ -177,9 +177,9 @@ else:
         cls_id  = int(box.cls[0])
         name    = model.names[cls_id]
         conf_v  = float(box.conf[0])
-        emoji   = CLASS_EMOJI.get(name, "⬜")
+        emoji   = CLASS_EMOJI.get(name, "")
         bar_w   = int(conf_v * 100)
-        status  = "🔴 Defective" if name in BAD_CLASSES else "🟢 Healthy"
+        status  = " Defective" if name in BAD_CLASSES else " Healthy"
 
         st.markdown(f"""
         <div class="detection-card">
@@ -204,7 +204,7 @@ else:
         buf = io.BytesIO()
         annotated_pil.save(buf, format="PNG")
         st.download_button(
-            label="⬇️ Download annotated image",
+            label=" Download annotated image",
             data=buf.getvalue(),
             file_name=f"seedvision_{uploaded.name}",
             mime="image/png",

@@ -19,7 +19,7 @@ if os.path.isdir(_venv_site):
 from ultralytics import YOLO
 
 # ──────────────────────────────────────────
-#  ✏️  CHANGE THIS to your image path
+#    CHANGE THIS to your image path
 IMAGE_PATH = "/home/shon/SeedVisiion/test.png"
 # ──────────────────────────────────────────
 
@@ -43,20 +43,20 @@ print(f"  SeedVision — {os.path.basename(IMAGE_PATH)}")
 print("=" * 50)
 
 if len(boxes) == 0:
-    print("  ⚠️  No seeds detected. Try lowering CONFIDENCE.")
+    print("    No seeds detected. Try lowering CONFIDENCE.")
 else:
     for box in boxes:
         cls_id      = int(box.cls[0])
         name        = model.names[cls_id]
         conf_v      = float(box.conf[0])
         x1,y1,x2,y2 = [int(v) for v in box.xyxy[0].tolist()]
-        status      = "🔴 DEFECTIVE" if name in BAD_CLASSES else "🟢 HEALTHY"
+        status      = " DEFECTIVE" if name in BAD_CLASSES else " HEALTHY"
         print(f"  {status}  |  {name:<18}  conf={conf_v:.0%}  bbox=[{x1},{y1},{x2},{y2}]")
 
     n_bad = sum(1 for b in boxes if model.names[int(b.cls)] in BAD_CLASSES)
     print("-" * 50)
     print(f"  Total: {len(boxes)}  |  Healthy: {len(boxes)-n_bad}  |  Defective: {n_bad}")
-    print(f"  Verdict: {'🔴 DEFECT(S) FOUND' if n_bad else '🟢 ALL HEALTHY'}")
+    print(f"  Verdict: {' DEFECT(S) FOUND' if n_bad else ' ALL HEALTHY'}")
 
 saved = os.path.join(BASE, "predictions", "output", os.path.basename(IMAGE_PATH))
 print(f"\n  Annotated image → {saved}")
