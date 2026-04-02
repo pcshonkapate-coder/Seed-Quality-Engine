@@ -1,0 +1,34 @@
+# Python Virtual Environments
+venv/
+env/
+.venv/
+__pycache__/
+
+# Datasets
+train/
+valid/
+test/
+
+# YOLO Weights and Outputs
+yolov8s.pt
+yolov8n.pt
+yolov8m.pt
+yolov8l.pt
+yolov8x.pt
+runs/
+predictions/
+
+# Logs
+*.log
+
+# Pytest cache
+.pytest_cache/
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
