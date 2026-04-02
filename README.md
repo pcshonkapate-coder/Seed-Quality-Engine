@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🌱 SeedVision
+# SeedVision
 
 ### Because Every Seed Matters: AI-Powered Quality & Defect Detection
 
@@ -22,7 +22,7 @@ Welcome to **SeedVision**! This project uses computer vision to automatically in
 
 ---
 
-## 🏆 How Good Is It?
+## How Good Is It?
 
 We put the model to the test on a separate batch of 150 images it had never seen before. Here's how it did:
 
@@ -33,24 +33,24 @@ We put the model to the test on a separate batch of 150 images it had never seen
 > - **Recall (How much did it find?):** 82.0%
 > - **F1-Score (The balance):** 76.2%
 
-### 🔬 The Details (Per-Class)
+### The Details (Per-Class)
 
 Some defects are super easy to spot, while others are a bit trickier. Here's the breakdown:
 
 | Condition | Precision | Recall | F1-Score | Average Precision | What it means |
 |:---|:---:|:---:|:---:|:---:|:---|
-| `damage` | 100.0% | 100.0% | **100.0%** | 99.5% 🥇 | Flawless detection! |
-| `crack` | 83.1% | 100.0% | **90.8%** | 99.5% 🥇 | Finds every crack, maybe a few false alarms. |
-| `insectdamage` | 100.0% | 66.7% | **80.0%** | 83.3% ✅ | Very sure when it finds insect marks. |
-| `healthy-70-60` | 73.7% | 86.2% | **79.4%** | 85.5% ✅ | Solid performance. |
-| `hole` | 100.0% | 60.0% | **75.0%** | 80.0% ✅ | Never wrong, but misses a few. |
-| `molddamage` | 87.5% | 58.3% | **70.0%** | 73.5% ✅ | Mostly accurate when it spots mold. |
-| `healthy` | 66.7% | 66.7% | **66.7%** | 66.7% 🟡 | Needs a bit more data to be certain. |
-| `black_point` | 50.0% | 100.0% | **66.7%** | 49.7% 🟡 | Finds them all, but struggles with false positives. |
+| `damage` | 100.0% | 100.0% | **100.0%** | 99.5% | Flawless detection! |
+| `crack` | 83.1% | 100.0% | **90.8%** | 99.5% | Finds every crack, maybe a few false alarms. |
+| `insectdamage` | 100.0% | 66.7% | **80.0%** | 83.3% | Very sure when it finds insect marks. |
+| `healthy-70-60` | 73.7% | 86.2% | **79.4%** | 85.5% | Solid performance. |
+| `hole` | 100.0% | 60.0% | **75.0%** | 80.0% | Never wrong, but misses a few. |
+| `molddamage` | 87.5% | 58.3% | **70.0%** | 73.5% | Mostly accurate when it spots mold. |
+| `healthy` | 66.7% | 66.7% | **66.7%** | 66.7% | Needs a bit more data to be certain. |
+| `black_point` | 50.0% | 100.0% | **66.7%** | 49.7% | Finds them all, but struggles with false positives. |
 
 ---
 
-## 🧠 Under the Hood
+## Under the Hood
 
 > [!IMPORTANT]
 > **The Tech Specs**
@@ -61,7 +61,7 @@ Some defects are super easy to spot, while others are a bit trickier. Here's the
 
 ---
 
-## 📁 The Data Collection
+## The Data Collection
 
 > [!NOTE]
 > **Where did the data come from?**
@@ -74,7 +74,7 @@ Some defects are super easy to spot, while others are a bit trickier. Here's the
 
 ---
 
-## 🚀 Get Started Now
+## Get Started Now
 
 Ready to try it out? It's straightforward.
 
@@ -107,6 +107,6 @@ Ready to try it out? It's straightforward.
 
 <div align="center">
 
-**Built with ❤️ using [Ultralytics YOLOv8](https://ultralytics.com)**
+**Built using [Ultralytics YOLOv8](https://ultralytics.com)**
 
 </div>
